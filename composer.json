@@ -1,0 +1,27 @@
+{
+  "name": "akmeh/http",
+  "description": "Http tools for handling responses and requests",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Akmeh"
+    }
+  ],
+  "require": {
+    "illuminate/http": "^5.6"
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.4",
+    "codeception/mockery-module": "^0.2.2"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Akmeh\\": "src/"
+    }
+  }
+}
+
+
+
