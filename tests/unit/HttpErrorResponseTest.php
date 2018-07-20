@@ -15,7 +15,20 @@ use Illuminate\Http\Response;
  */
 class HttpErrorResponseTest extends Test
 {
+    /**
+     * @test
+     */
+    public function unauthorizeCall()
+    {
 
+        try {
+            (new HttpDummy())->when401();
+        } catch (HttpException $e) {
+            $response = $e->getResponse();
+            $this->assertEquals($response['title'], HttpDummy::MESSAGE_401);
+            $this->assertEquals($response['status'], Response::HTTP_UNAUTHORIZED);
+        }
+    }
     /**
      * @test
      */
@@ -86,6 +99,8 @@ class HttpDummy
     const MESSAGE_422 = 'the parameters are invalid';
     const MESSAGE_204 = 'No content found';
 
+    const MESSAGE_401 = 'No content found';
+
     const MESSAGE_500 = 'The Server had an issue';
 
     /**
@@ -120,4 +135,12 @@ class HttpDummy
         throw new InvalidParametersException(self::MESSAGE_422);
     }
 
+
+    /**
+     * @throws \Akmeh\Http\AuthException
+     */
+    public function when401()
+    {
+        throw new \Akmeh\Http\AuthException(self::MESSAGE_401);
+    }
 }
