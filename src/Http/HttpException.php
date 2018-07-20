@@ -29,7 +29,11 @@ class HttpException extends \Exception
      */
     public function getResponseAsString() : string
     {
-        return implode("\n", $this->getResponse());
+        $response = '';
+        foreach ($this->getResponse() as $key => $val) {
+            $response .= "\n" . $key . ' :: ' . $val;
+        }
+        return $response;
     }
 
     /**
