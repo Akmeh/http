@@ -8,8 +8,34 @@ namespace Akmeh\Http;
  */
 class HttpException extends \Exception
 {
+    /**
+     *
+     * Declare the status code for each case
+     * @var int
+     */
+    protected $statusCode;
 
-    public function getResponse()
+    /**
+     * @return int
+     */
+    public function getStatusCode() : int
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * Get Response as a String for Log propose
+     * @return string
+     */
+    public function getResponseAsString() : string
+    {
+        return implode("\n", $this->getResponse());
+    }
+
+    /**
+     * @return array
+     */
+    public function getResponse(): array
     {
         return [
             'id' => get_called_class(),
